@@ -25,7 +25,7 @@ public class StudentService {
         studentModel.setLastName(lastName);
         GroupModel groupModel = groupRepo.findByNumber(number);
         groupModel.setStudents(groupModel.getStudents()+1);
-        studentModel.setGroupModel(groupModel);
+       /* studentModel.setGroupModel(groupModel);*/
 
         studentModelRepository.save(studentModel);
         return studentModel;
@@ -33,5 +33,9 @@ public class StudentService {
 
     public List<StudentModel> getAll(){
         return studentModelRepository.findAll();
+    }
+
+    public StudentModel getStudent(String name, String lastName){
+        return studentModelRepository.findByFirstNameAndLastName(name, lastName);
     }
 }

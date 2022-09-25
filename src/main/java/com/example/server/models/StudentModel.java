@@ -1,8 +1,11 @@
 package com.example.server.models;
 
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "overone129_students")
@@ -18,7 +21,8 @@ public class StudentModel {
     @Column(name = "last_name")
     String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "number", referencedColumnName = "number")
+    @OneToOne
+    @JoinColumn(name = "number", referencedColumnName = "number",
+            nullable = false, updatable = false)
     GroupModel groupModel;
 }

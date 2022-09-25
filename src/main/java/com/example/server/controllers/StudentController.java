@@ -1,6 +1,7 @@
 package com.example.server.controllers;
 
 import com.example.server.models.StudentModel;
+import com.example.server.repos.StudentModelRepository;
 import com.example.server.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,10 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @GetMapping("/get")
-    public List<StudentModel> getAll(){
-        return studentService.getAll();
+    @GetMapping("1/{name}/{lastName}")
+    public StudentModel getByData(@PathVariable String name,
+                                  @PathVariable String lastName){
+        return studentService.getStudent(name, lastName);
     }
 
     @GetMapping("/create/{name}/{lastName}/{number}")
@@ -29,4 +31,5 @@ public class StudentController {
                 lastName, number);
         return studentModel;
     }
+
 }
